@@ -80,10 +80,7 @@ This has two issues.
   - ``std::forward`` is not a variadic-template and thus does not accept an arbitrary amount of template-arguments and
   - ``some_name`` refers to a [pack](https://en.cppreference.com/w/cpp/language/pack), which must be expanded via ``...``.
   
-What we actually need is this:
-```cpp
-std::forward<Args>(some_name)...
-```
+What we actually need is this: ``std::forward<Args>(some_name)...``
 
 As this is a feature that I really want to support, I've accepted the challenge.
 
@@ -99,7 +96,7 @@ To be able to actually solve that problem, I first had to understand it.
 
 There are two possible forms, which ``param_type`` can have:
 - Either in form of ``T``, which then denotes a (possibly cv-ref qualified) type, or
-- in form of ``T...``, which then requires a pack(-expansion).
+- in form of ``T...``, which then requires a pack-expansion.
 
 ``param_name`` on the other hand-side is always just a plain identifier, which in the first case can be treated as regular param or - in the second case - must also be treated as a pack.
 
@@ -146,7 +143,7 @@ struct type_list {};
         std::forward<types>(param_name)...;             \ // unfortunately that's not very useful...
     }(type_list<param_type>{])                            // invoke the lambda immediately
 ```
-That looks quit promising, but we are not done yet, because the lambda actually does nothing useful.
+That looks quite promising, but we are not done yet, because the lambda actually does nothing useful.
 The question is, what shall I return from that lambda?
 In fact, I decided to always create a ``std::tuple`` with appropriate references as elements and simply return that from the lambda,
 as this resulted in just a few simple changes in the surrounding macros.
