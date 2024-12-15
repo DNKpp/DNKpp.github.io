@@ -63,12 +63,7 @@ For the majority of cases, this is sufficient and get's the job done.
 ### Mocking variadic-template interfaces
 
 {: .box-note}
-**NOTE** Quick refresher: Variadic-templates are templates, which accept an arbitrary amount of template-arguments (see [cppreference](https://en.cppreference.com/w/cpp/language/pack)).
-```cpp
-template <typename... Args> // the ... makes it variadic
-struct my_template;
-```
-``my_template`` is then variadic, because we can instantiate it with any number of template-arguments as we like: ``my_template<>``, ``my_template<int>``, ``my_template<float, int>``, etc.
+**NOTE** Quick refresher: Variadic-templates are templates, which accept an arbitrary amount of template-arguments (see: [cppreference](https://en.cppreference.com/w/cpp/language/pack)).
 
 Imagine the following interface:
 ```cpp
@@ -90,7 +85,7 @@ What we actually need is this:
 std::forward<Args>(some_name)...
 ```
 
-As this is a function that I really want to support, I have accepted the challenge.
+As this is a feature that I really want to support, I've accepted the challenge.
 
 {: .box-note}
 **NOTE** It's interesting to see, that neither ``trompeloeil`` nor ``gmock`` support this (see: [trompeloeil-example](https://godbolt.org/z/qfo77enTT) and [gmock-example](https://godbolt.org/z/nbzx96K49)).
