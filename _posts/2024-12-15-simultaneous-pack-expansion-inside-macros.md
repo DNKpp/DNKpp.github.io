@@ -131,7 +131,7 @@ A function for example could then take over the forwarding job:
 #define FORWARDING_MACRO(param_type, param_name) forwarding_function<param_type>(param_name)
 ```
 But, wait. That won't work either, as we still have to conditionally expand the ``param_name``.
-Thankfully, c++ has a feature, which acts as a function, but can also provide access to the outer scope: Lambdas to the rescue!
+Thankfully, c++ has a feature, which acts like a function, but can also provide access to the outer scope: Lambdas to the rescue!
 
 Let's see how this can look like:
 ```cpp
