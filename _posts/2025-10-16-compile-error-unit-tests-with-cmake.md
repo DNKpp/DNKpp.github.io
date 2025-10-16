@@ -64,7 +64,7 @@ The interesting question became:
 how can we reliably extract these error expectations from the source file
 — so they can be used programmatically within CMake?
 
-# Extracting Error-Messages Expectations with CMake
+# Extracting Error-Message Expectations with CMake
 
 To automate the verification of compiler errors, the first step is to read the expected error strings from each test’s source file.
 For this, I utilized CMake’s `file` command, which allows us to load the contents of the source file containing the test case.
